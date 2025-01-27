@@ -14,7 +14,7 @@
 
 ![data1](./img/dataset-preview.png)
 
-Climate data collected from 12 stations in Brazos County, Texas. The data includes temperature (min, max, avg), and precipitation.
+Climate data collected from 18 stations in Brazos County, Texas. The data includes temperature (min, max, avg), and precipitation.
 
 ### **Digital Elevation Model (DEM)**
 
@@ -90,6 +90,8 @@ Tasks:
 ## Grading Policy
 
 - 50%: **Follow the instructions and show intermediate results by screenshots**
+  
 - 40%: **Answer questions for each subsections and justify your answers with quantitative evidence and figures if needed**
+  
 - 10%: **Show justification for your parameter tuning from the aspect of formulas and characteristics of the algorithms**
   - For example, explain the differences in RMSE using `regularized` and `tension` in `Cubic-Spline` by the characteristices of the formula mentioned in the textbook or the education material.

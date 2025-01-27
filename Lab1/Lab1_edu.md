@@ -68,7 +68,7 @@ $$
 
 **Where:**
 
-- $d_i$ is the distance between the control point and the target point.
+- $d_i$ is the distance between the control point $x_i$ and the target point $x_p$.
 - $p$ is the power coefficient.
 - $\omega_i(x_p)=1/d_i^p$ is the weight in Eq.1; $f(x)=x$ from Eq.1 means `IDW` is a linear interpolation algorithm.
 
@@ -87,7 +87,7 @@ Because $p$ value's manifying effect on the weights, there are some side-effects
 
 In cubic spline interpolation (as shown in the following figure), the interpolating function is a set of piecewise cubic functions. Specifically, we assume that the points ($x_i$,$y_i$) and ($x_i$+1,$y_i$+1) are joined by a cubic polynomial
 $$
-   S_i(x)=a_ix^3 x+b_i x^2+ c_i x+ d_i \tag{4}
+   S_i(x)=a_ix^3 +b_i x^2+ c_i x+ d_i \tag{4}
 $$
 that is valid for $x_i≤x≤x_{i+1}$, for $i=1,…,n−1$. 
 
@@ -181,6 +181,8 @@ To be short, `Resampling` is a type of interpolation. In resampling rasters, the
 It's a technique for resampling raster data in which the value of each cell in an output raster is calculated using the value of the nearest cell in an input raster. 
 Nearest neighbor assignment does not change any of the values of cells from the input layer; for this reason, it is often used to resample categorical or integer data (for example, land use, soil, or forest type), or radiometric values, such as those from remotely sensed images.
 
+![NN](./img/NN_algo.png)
+
 ### 3.2 `Bilinear Interpolation`
 
 `Bilinear (2-D) interpolation` is defined as linear interpolation on two directions or axes. The 1-D stand for one direction (x axis), while 2-D stands for two directions (x and y axes). The predicted value is actually the `geometrically weighted average` of the four nearest data points
@@ -211,3 +213,4 @@ $$
 - [Spatial Interpolation](https://mgimond.github.io/Spatial/spatial-interpolation.html)
 - [Cubic Spline Interpolation](https://pythonnumericalmethods.studentorg.berkeley.edu/notebooks/chapter17.03-Cubic-Spline-Interpolation.html)
 - [Longley, P., Goodchild, M., Maguire, D., & Rhind, D. (2015). Spatial data analysis. In Geographic Information Science and Systems (4th ed., p. 314). Wiley.](https://www.google.com/books/edition/Geographic_Information_Science_and_Syste/C_EwBgAAQBAJ?hl=en&gbpv=1&dq=geographic+information+science+and+systems&printsec=frontcover)
+- [Nearest Neighbor](https://medium.com/@akp83540/nearest-neighbor-interpolation-84c956ee56a3)
