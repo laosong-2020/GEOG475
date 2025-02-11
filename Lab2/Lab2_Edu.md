@@ -52,7 +52,6 @@ $$
 
 Variance or its square root, standard deviation, is a measure of the **`dispersion`** of the data points. It can be used in the context of spatial data to measure the **`heterogeneity`** of the data points. The usage in GIS includes:
 
-- **Geostatistics**: The variance of the residuals of a regression model can be used to measure the **`spatial autocorrelation`** of the residuals.
 - **Landscape Ecology**: The variance of the elevation values in a region can be used to measure the **`roughness`** of the terrain.
 - **Remote Sensing**: The variance of the pixel values in an remote-sensing image can be used to classify the **`texture`** of the image.
 
@@ -170,6 +169,70 @@ The **`bandwidth`** is another important parameter. It controls the **`smoothnes
 
 ## 3. Spatial Statistical Metrics
 
-Recall the **`Variance`** we mentioned earlier. To be short, it measures how **`dispersed`** for all points $v(x_i, y_i)$.
+### 3.1 Global & Local Variance
+
+Recall the **`Variance`** we mentioned earlier. To be short, it measures how **`dispersed`** for all points $v(x_i, y_i)$. If we consider the raster image as the figure below, the global **`variance`** is a number that represents how diversed of all pixel values. We can imagine there is a window whose shape is the same as the raster image itself, and we are calculating the **`variance`** of all pixel values within this window.
+
+But if we decrease the size of that window, and within each window, there can be a value represents the variance within that window. And all these output variance values will compose another matrix. This matrix is called **`Local Variance`**.
+
+The value range of **`variance`** is $[0, +\infty)$. The larger the value, the more **`dispersed`** the data points are. Is this method revealing enough insights of spatial correlation?
+
+But this method can conly represent the statistical information of the data points. It cannot represent the fact that closer points should have stronger influence on each other. Often, this characteristic is called **`spatial autocorrelation`**.
 
 ![variance](./img/local-global-variance.png)
+
+## 4. Spatial Autocorrelation
+
+> "Everything is related to everything else, but near things are more related than distant things." - Waldo Tobler
+
+![autocorrelation](./img/autocorrelation.jpg)
+
+### Moran's I Index
+
+The term `auto` in autocorrelation means `self`. It represents the relation within the same variable at different locations. The `Moran's I Index` is a measure of spatial autocorrelation. It is defined as:
+
+$$
+    I = \frac{N}{W} \cdot \frac{\sum_{i=1}^{m}\sum_{j=1}^{n}\sum_{k=1}^{m}\sum_{l=1}^{n} w_{(i,j),(k,l)} \, (v_{i,j} - \bar{v}) (v_{k,l} - \bar{v})}{\sum_{i=1}^{m}\sum_{j=1}^{n} (v_{i,j} - \bar{v})^2} \tag{9}
+$$
+
+where  
+
+- $m$, $n$ are the number of rows and columns of the raster; $N=m \times n$ is the total number of pixels.
+- $\bar{v}=\frac{1}{N}\sum_{i=1}^{m} \sum_{j=1}^{n} v_{i,j}$ is the average pixel value.
+- $\omega_{(i,j),(k,l)}$ is the spatial weight between pixel $(i,j)$ and $(k,l)$
+- $W$ is the sum of all weights: $W = \sum_{i=1}^{m}\sum_{j=1}^{n}\sum_{k=1}^{m}\sum_{l=1}^{n}\omega_{(i,j),(k,l)}$
+
+![moran's I](./img/Moran's_I_example.png)
+
+You now can tell that `Moran's I` can measure the spatial autocorrelation in a good way. The value range of `Moran's I` is $[-1, 1]$. If the value is close to 1, it means the data points are highly correlated. If the value is close to -1, it means the data points are highly negatively correlated. If the value is close to 0, it means the data points are not correlated.
+
+About the spatial weight parameter $\omega$ in Equation.9, it is used to represent the spatial adjacency between two pixels. The common ways to define the spatial weights include:
+
+- **`Queen Contiguity`**
+
+Two spatial units are considered neighbors if they share either a boundary or a vertex.
+
+$$
+    w_{(i,j),(k,l)} =
+    \begin{cases}
+        1, & \text{if unit } (i,j) \text{ and unit } (k,l) \text{ share a boundary or a vertex} \\
+        0, & \text{otherwise}
+    \end{cases}
+$$
+
+- **`Rook Neighbour`**
+
+Two spatial units are considered neighbors only if they share a common boundary (ignoring shared vertices).
+
+$$
+    w_{(i,j),(k,l)} =
+    \begin{cases}
+        1, & \text{if unit } (i,j) \text{ and unit } (k,l) \text{ share a common boundary (Rook contiguity)} \\
+        0, & \text{otherwise}
+    \end{cases}
+$$
+
+## References
+
+- Miller, H. J. (2004). Tobler’s First Law and Spatial Analysis. Annals of the Association of American Geographers, 94(2), 284–289. https://doi.org/10.1111/j.1467-8306.2004.09402005.x
+- Li, X. (2025). Spatial Autocorrelation. Github.io. https://xianpingli.github.io/posts_en/2015/12/17/Spatial-autocorrelation/
