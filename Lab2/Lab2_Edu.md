@@ -187,6 +187,29 @@ But this method can conly represent the statistical information of the data poin
 
 ![autocorrelation](./img/autocorrelation.jpg)
 
+### Semi-variogram
+
+An angle of understanding the term `spatial autocorrelation` is to consider the correlation between two points, and answer this question:
+
+**How do this point pair' values change when they are getting further?**
+
+The figure below shows an example raster image, on the left side, with sampled points from it. If we consider all the sampled point as: $p_i=(x_i,y_i,v_i)$. Then we pick 2 random points as a pair, the distance between $p_i$ and $p_j$ is $h_{ij}$ (x-axis of the right sub-figure). And the value difference within this point pair is: $v_{ij}=|v_i-v_j|$ (y-axis of the right sub-figure).
+
+![semi-vg-expl](./img/semi-VG-expl.png)
+
+The semi-variogram is defined as:
+
+$$
+    \gamma(h) = \frac{1}{2N(h)} \sum_{i=1}^{N(h)} (v_i - v_{i+h})^2 \tag{9}
+$$
+
+Where,
+
+- $h$: lag distance, the distance between two points.
+- $N(h)$: the number of point pairs that have the distance $h$.
+- $v_i$, $v_{i+h}$: the value of the point pair $p_i$ and $p_{i+h}$.
+- $\gamma(h)$: the semi-variogram value at distance $h$.
+
 ### Moran's I Index
 
 The term `auto` in autocorrelation means `self`. It represents the relation within the same variable at different locations. The `Moran's I Index` is a measure of spatial autocorrelation. It is defined as:
