@@ -47,6 +47,7 @@ All bands are atmospherically corrected to reflect surface reflections.
 ### Water Well Nitration Data
 
 The dataset contains the nitrate concentration of water wells in Brazos County, TX. The nitrate concentration is a measure of the water quality.
+
 ![nitrate_well](./img/Well_Nitrate.png)
 
 ## Part 1. Spatial Statistical Metrics
@@ -110,6 +111,17 @@ Steps:
 
 ![2-2-steps](./img/2-2-Select_Filter.png)
 
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 80%; margin: 0 auto;">
+  <figure style="margin: 0; text-align: center;">
+    <img src="./img/Part2_MeanCenter.png" alt="Part3_Sample1" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover;" />
+    <figcaption>Mean Center</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="./img/Part2_Std.png" alt="Part3_Sample2" style="width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover;" />
+    <figcaption>Standard Distance</figcaption>
+  </figure>
+</div>
+
 The output should look like:
 
 ![2-2-output](./img/Part2_results.png)
@@ -132,11 +144,13 @@ Steps:
 1. Load the `LandSAT NIR Band` image data.
 2. Select 2 areas which reflect comparatively high and low spatial complexity (sample 1 and sample 2).
      - Make sure 2 areas are of the same size (400 \* 400 pixels, eq to 12000m \* 12000m).
-     - This is actually a hard step, how do you know if the areas you selected are of high or low complexity?
+     - This is actually a **`HARD`** step, how do you know if the areas you selected are of high or low complexity?
 3. Apply global semi-variogram analysis to the 2 areas.
-    - There are many ways to complete this step. Suggesstions: ENVI, QGIS, or write your own code to do this step. I didn't find a good tool in ArcGIS to do this step.
+    - There are many ways to complete this step.
+    - Suggesstions: ENVI, QGIS, or write your own code to do this step. ArcGIS is not recommended at this step.
 4. Apply Moran's I analysis to the 2 areas.
-   - Same as step 3, you can use ENVI, QGIS, or write your own code to do this step.
+   - Same as step 3, improvise your own way to do this step
+   - ArcGIS is not recommended at this step because it doesn't have a Moran's I tool for raster data.
 5. Describe, compare, and intepret the results of the two analyses.
 
 Flowchart:
@@ -184,12 +198,13 @@ Questions to answer:
 
 ### Steps:
 
-1. Load the **`filtered`** Well Nitrate data, which is the output from Part 2.
+1. Load the **`filtered`** Well Nitrate data from Part 2.
 2. Apply `Point Density` tool on the filtered well nitrate data.
-    - Use different neighborhood shapes (`Circle`, `Rectangle`, and `Annulus`).
+    - Use different neighborhood shapes (`Circle`, `Rectangle`).
 3. Apply `Kernel Density` tool on the filtered well nitrate data.
     - Use different output cell sizes and varying search radius.
 4. Compare and contrast the results from the point density and the kernel density tools.
+    - Give your reasonable hypothesis on the sources of the nitrate contamination in Brazos County.
 
 ### Flowchart:
 
@@ -243,6 +258,17 @@ Questions to answer:
 - Section 504 (Thursday Section): Mar 6 at 11:59pm
 
 ## Submission:
+
+### What to submit:
+
+A `.doc/docx` file that includes:
+
+- Contextx and necessary screenshots (with captions) to prove you finished all the required steps.
+  - refer to the `results` subsections in each part.
+- Well-supported answers to all questions in each part.
+  - You need to justify your answers with quantitative evidence and figures if needed.
+
+### Where to submit:
 
 Through this [canvas link](https://canvas.tamu.edu/courses/358912/assignments/2411084).
 

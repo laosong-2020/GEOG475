@@ -197,6 +197,8 @@ The figure below shows an example raster image, on the left side, with sampled p
 
 ![semi-vg-expl](./img/semi-VG-expl.png)
 
+Note: the example above here is a random 2-D raster, it doesn't have any physical meaning, and its values are randomly generated. So there is no autocorrelation at all. It's just used to explain the concept of `semi-variogram`.
+
 The semi-variogram is defined as:
 
 $$
@@ -209,6 +211,16 @@ Where,
 - $N(h)$: the number of point pairs that have the distance $h$.
 - $v_i$, $v_{i+h}$: the value of the point pair $p_i$ and $p_{i+h}$.
 - $\gamma(h)$: the semi-variogram value at distance $h$.
+
+![semi-vg](./img/Schematic_variogram.png)
+
+But be aware to separate the concept of `spatial autocorrelation` and `spatial varioation`. Some characteristics of both `variation` and `autocorrelation` can be revealed from the `semi-variogram`.
+
+From the figure above, there are 3 important features of the semi-variogram:
+
+- **`Nugget`**: The value of the semi-variogram at the origin. It represents the variance of the data points at the smallest distance. But high `Nugget` doesn't mean spatial continous autocorrelations.
+- **`Range`**: The distance (lag) at which the semi-variance reaches a plateau. When the distance is beyond this threshold, spatial autocorrelation is no longer significant.
+- **`Sill`**: The value of the semi-variogram becomes stable. the value when the semi-variance function stabilizes and represents the overall level of variability. sill is usually composed of nuggets (microscale variation or error) plus structural variation (variation exhibited with increasing distance).
 
 ### Moran's I Index
 
