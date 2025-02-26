@@ -55,6 +55,13 @@ Digital Elevation Model (DEM) data of **Park Range**, northwest of Colorado. The
 
 ### **Flowchart:**
 
+<div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 90%; margin: 0 auto;">
+  <figure style="margin: 0; text-align: center;">
+    <img src="./img/Part1_Flowchart.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+    <figcaption>Part 1 Flowchart</figcaption>
+  </figure>
+</div>
+
 ### **Expected Results:**
 
 - The table you merged from 3 tables from `Step 1&2` should look like this:
@@ -174,6 +181,12 @@ Digital Elevation Model (DEM) data of **Park Range**, northwest of Colorado. The
     </div>
 
 ### **Flowchart:**
+
+<div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 90%; margin: 0 auto;">
+  <figure style="margin: 0; text-align: center;">
+    <img src="./img/Part2_Flowchart.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+    <figcaption>Part 2 Flowchart</figcaption>
+  </figure>
 
 ### **Expected Results:**
 
@@ -310,6 +323,12 @@ Digital Elevation Model (DEM) data of **Park Range**, northwest of Colorado. The
 3. Examine the spatial distribution of curvature over the landscape.
 
 ### **Flowchart:**
+
+<div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 90%; margin: 0 auto;">
+  <figure style="margin: 0; text-align: center;">
+    <img src="./img/Part3_Flowchart.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+    <figcaption>Part 3 Flowchart</figcaption>
+  </figure>
 
 ### **Expected Results:**
 
