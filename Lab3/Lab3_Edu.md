@@ -122,6 +122,13 @@ $$
 
 As with `slope`, `curvature` values depend upon the line or plane along which such calculations are made. There are several alternative measures of surface curvature. The three most frequently provided within GIS software are `profile curvature`, `plan curvature` and `tangential curvature`. Additional terms and measures include longitudinal curvature, cross-sectional curvature, maximum and minimum curvature, and mean curvature.
 
+<div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 50%; margin: 0 auto;">
+    <figure style="margin: 0; text-align: center;">
+        <img src="./img/Edu_StdCurv.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+        <figcaption>Curvature</figcaption>
+    </figure>
+</div>
+
 ### Profile Curvature
 
 Profile curvature is the curvature of the surface in the direction of maximum slope. It is a measure of how much the slope changes along the direction of maximum slope. It is calculated as:
@@ -132,6 +139,13 @@ $$
 
 Where $s$ is the distance along the direction of maximum slope.
 
+<div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 70%; margin: 0 auto;">
+    <figure style="margin: 0; text-align: center;">
+        <img src="./img/Edu_ProfCurv.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+        <figcaption>Profile Curvature</figcaption>
+    </figure>
+</div>
+
 ### Plan Curvature
 
 Plan curvature is the curvature of the surface perpendicular to the direction of maximum slope. It is a measure of how much the slope changes in a direction perpendicular to the direction of maximum slope. It is calculated as:
@@ -140,6 +154,13 @@ K_{pl} = \frac{\partial^2 Z}{\partial n^2}
 $$
 
 Where $n$ is the distance perpendicular to the direction of maximum slope.
+
+<div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 70%; margin: 0 auto;">
+    <figure style="margin: 0; text-align: center;">
+        <img src="./img/Edu_PlanCurv.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+        <figcaption>Planform Curvature</figcaption>
+    </figure>
+</div>
 
 ### Tangential Curvature
 
@@ -156,3 +177,4 @@ Where $t$ is the distance along the direction of the tangent to the slope.
 - [Gradient, slope, and aspect by Spatial Analysis Online](https://spatialanalysisonline.com/HTML/gradient__slope_and_aspect.htm)
 - [Vector Calculus: Understanding the Gradient](https://betterexplained.com/articles/vector-calculus-understanding-the-gradient/#:~:text=The%20gradient%20is%20a%20fancy,a%20function%20(intuition%20on%20why))
 - [Terrain Attributes- RichDEM](https://richdem.readthedocs.io/en/latest/terrain_attributes.html)
+- [Curvature - ArcGIS](https://pro.arcgis.com/en/pro-app/3.3/help/analysis/raster-functions/curvature-function.htm)
