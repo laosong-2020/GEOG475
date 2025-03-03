@@ -266,28 +266,28 @@ Digital Elevation Model (DEM) data of **Park Range**, northwest of Colorado. The
         </figure>
     </div>
 3. The value ranges of `Slope` and `Aspect` layers before and after converting to radian. **To prove you convert them and get rid of the negative values**
-   <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 80%; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 70%; margin: 0 auto;">
         <figure style="margin: 0; text-align: center;">
-            <img src="./img/Part2_Results_SlopeValueRange.png" alt="Part1_Steps_Focal" style="width: 100%; height: auto; object-fit: cover;" />
-            <figcaption>Value Range of Slope in degree</figcaption>
-        </figure>
-        <figure style="margin: 0; text-align: center;">
-            <img src="./img/Part2_Results_AspectValueRange.png" alt="Part1_Steps_RasterCalc" style="width: 100%; height: auto; object-fit: cover;" />
-            <figcaption>Value range of Aspects in degree</figcaption>
+            <img src="./img/Part3_Results_ValueRange_Slope_Ori.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+            <figcaption>
+                Value range of Slope before converting to radian
+            </figcaption>
         </figure>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 80%; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 70%; margin: 0 auto;">
         <figure style="margin: 0; text-align: center;">
-            <img src="./img/Part2_Results_SlopeValueRange_Rad.png" alt="Part1_Steps_Focal" style="width: 100%; height: auto; object-fit: cover;" />
-            <figcaption>Value Range of Slope in radian</figcaption>
+            <img src="./img/Part3_Results_ValueRange_Aspect_Orig.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+            <figcaption>
+                Value range of Aspect before converting to radian
+            </figcaption>
         </figure>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 70%; margin: 0 auto;">
         <figure style="margin: 0; text-align: center;">
-            <img src="./img/Part2_Results_AspectValueRange_Rad.png" alt="Part1_Steps_RasterCalc" style="width: 100%; height: auto; object-fit: cover;" />
-            <figcaption>Value range of Aspects in radian</figcaption>
-        </figure>
-        <figure style="margin: 0; text-align: center;">
-            <img src="./img/Part2_Results_AspectValueRange_RadAbs.png" alt="Part1_Steps_Focal" style="width: 100%; height: auto; object-fit: cover;" />
-            <figcaption>Value Range of Aspects in radian (all positives)</figcaption>
+            <img src="./img/Part3_Results_ValueRange_Aspect_Radian.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+            <figcaption>
+                Value range of Slope & Aspect after converting
+            </figcaption>
         </figure>
     </div>
 4. Extracted Values Attribute Table:

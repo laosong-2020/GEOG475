@@ -147,7 +147,7 @@ $$
 
 Where $f_{xx}=\frac{\partial^2 f}{\partial x^2}$, $f_{y}=\frac{\partial^2 f}{\partial y^2}$, $f_{xy}=f_{yx}=\frac{\partial^2 f}{\partial x \partial y}$.
 
-The physical meaning of this second-order derivative is: how fast does the value of the `gradient` change along the direction of $\mathbf{s}$. The `second-order directional derivative` describes how much the function **`bends`** along a given direction, but is computed in `parameter space` and does not take into account the actual aggregate shape of the surface. So we need to perform `normal vector correction` and `unit vector normalization`. The final `curvature` obtained describes only the degree of curvature of the function shape along a certain direction and is `uniformly concave`. **Convexity** is **positive** curvature and **concavity** is **negative** curvature:
+The `second-order directional derivative` describes how much the function **`bends`** along a given direction, but is computed in `parameter space` and does not take into account the actual aggregate shape of the surface. So we need to perform `normal vector correction` and `unit vector normalization`. The final `curvature` obtained describes only the degree of curvature of the function shape along a certain direction and is `uniformly concave`. **Convexity** is **positive** curvature and **concavity** is **negative** curvature:
 
 $$
 \mathbf{K_s} = \frac{f_{xx}u^2 + 2f_{xy}uv + f_{yy}v^2}{(u^2+v^2)^{3/2}}
@@ -193,7 +193,7 @@ Where:
 
 ### Planform Curvature
 
-**`Plan Curvature`**, reflects the rate of change of the `Terrain Aspect angle` measured in the `horizontal plane`, and is a measure of the curvature of contours. **Negative values** indicate **divergent** water flow over the surface, and **positive** values indicate **convergent** flow.
+**`Plan Curvature`**, reflects the rate of change of the `Terrain Aspect angle` measured in the `horizontal plane`, and is a measure of the curvature of contours. **Positive** values indicate **divergent** water flow over the surface, and **negative** values indicate **convergent** flow.
 
 $$
 K_{plan} = \frac{f_{xx}f_y^2-2f_{xy}f_xf_y+f_{yy}f_x^2}{(f_x^2+f_y^2)(1+f_x^2+f_y^2)^{3/2}}
