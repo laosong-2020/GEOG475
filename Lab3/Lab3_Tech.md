@@ -319,7 +319,16 @@ Digital Elevation Model (DEM) data of **Park Range**, northwest of Colorado. The
 
 1. Load your `30m (original)` DEMs.
 2. Generate `profile` and `tangential` (plan) curvature maps.
-   ![part3-step-curvature](./img/Part3_Steps_Curvature.png)
+   <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 90%; margin: 0 auto;">
+        <figure style="margin: 0; text-align: center;">
+            <img src="./img/Part3_Steps_Curvature-1.png" alt="Part1_Steps_Focal" style="width: 100%; height: auto; object-fit: cover;" />
+            <figcaption>Profile Curvature</figcaption>
+        </figure>
+        <figure style="margin: 0; text-align: center;">
+            <img src="./img/Part3_Steps_Curvature-2.png" alt="Part1_Steps_RasterCalc" style="width: 100%; height: auto; object-fit: cover;" />
+            <figcaption>Tangential Curvature</figcaption>
+        </figure>
+    </div>
 3. Examine the spatial distribution of curvature over the landscape.
 
 ### **Flowchart:**
@@ -329,6 +338,7 @@ Digital Elevation Model (DEM) data of **Park Range**, northwest of Colorado. The
     <img src="./img/Part3_Flowchart.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
     <figcaption>Part 3 Flowchart</figcaption>
   </figure>
+</div>
 
 ### **Expected Results:**
 
@@ -339,7 +349,7 @@ Digital Elevation Model (DEM) data of **Park Range**, northwest of Colorado. The
             <figcaption>Profile Curvature Map</figcaption>
         </figure>
         <figure style="margin: 0; text-align: center;">
-            <img src="./img/Part3_Results_PlanCurv.png" alt="Part1_Steps_RasterCalc" style="width: 100%; height: auto; object-fit: cover;" />
+            <img src="./img/Part3_Results_TangCurv.png" alt="Part1_Steps_RasterCalc" style="width: 100%; height: auto; object-fit: cover;" />
             <figcaption>Tangential Curvature Map</figcaption>
         </figure>
     </div>

@@ -54,7 +54,12 @@ $$
 Z = f(x,y)
 $$
 
-Then the function form of $f$ becomes familiar. It's just the hillshade of the terrain that `DEM` describes. Then if we apply the `gradient` operator $\nabla$ on this function, what is the physical meaning of the `magnitude` and `direction` of the gradient of the `DEM`?
+Then the function form of $f$ becomes familiar. It's just the hillshade of the terrain that `DEM` describes. Then if we apply the `gradient` operator $\nabla$ on this function, the `gradient` of the `DEM` is a `vector`, which can be represented as:
+$$
+\nabla{Z} = \left(\overrightarrow{\frac{\partial f}{\partial x}}, \overrightarrow{\frac{\partial f}{\partial y}}\right) = \frac{\partial f}{\partial x}\vec{i} + \frac{\partial f}{\partial y}\vec{j}
+$$
+
+Then what is the physical meaning of the `magnitude` and `direction` of the gradient of the `DEM` $\nabla{Z}$?
 
 ### Slope
 
@@ -120,7 +125,35 @@ $$
 
 ## Second-Order Derivateives -- Curvature
 
-As with `slope`, `curvature` values depend upon the line or plane along which such calculations are made. There are several alternative measures of surface curvature. The three most frequently provided within GIS software are `profile curvature`, `plan curvature` and `tangential curvature`. Additional terms and measures include longitudinal curvature, cross-sectional curvature, maximum and minimum curvature, and mean curvature.
+For the elevation model over a 2-D plain, $Z = f(x,y)$, its first-order derivative, which is the `gradient`, is a `vector`. However its second-order derivative on certain directions is a `scalar`:
+
+Let's define a `vector` $\mathbf{s}=u\vec{i}+v\vec{j}$, and the `Second Directional Derivative` of $Z$ on this direction $\mathbf{s}$ is `Quadratic Form` of the `Hessian` matrix and the vector $\mathbf{s}$:
+
+$$
+\frac{\partial^2 Z}{\partial s^2} = \mathbf{s^T}\mathbf{H}\mathbf{s}\\
+= \begin{bmatrix}
+u & v
+\end{bmatrix}
+\begin{bmatrix}
+    f_{xx} & f_{xy} \\
+    f_{xy} & f_{yy}
+\end{bmatrix}
+\begin{bmatrix}
+    u \\
+    v
+\end{bmatrix}\\
+= f_{xx}u^2 + 2f_{xy}uv + f_{yy}v^2
+$$
+
+Where $f_{xx}=\frac{\partial^2 f}{\partial x^2}$, $f_{y}=\frac{\partial^2 f}{\partial y^2}$, $f_{xy}=f_{yx}=\frac{\partial^2 f}{\partial x \partial y}$.
+
+The physical meaning of this second-order derivative is: how fast does the value of the `gradient` change along the direction of $\mathbf{s}$. The `second-order directional derivative` describes how much the function **`bends`** along a given direction, but is computed in `parameter space` and does not take into account the actual aggregate shape of the surface. So we need to perform `normal vector correction` and `unit vector normalization`. The final `curvature` obtained describes only the degree of curvature of the function shape along a certain direction and is `uniformly concave`. **Convexity** is **positive** curvature and **concavity** is **negative** curvature:
+
+$$
+\mathbf{K_s} = \frac{f_{xx}u^2 + 2f_{xy}uv + f_{yy}v^2}{(u^2+v^2)^{3/2}}
+$$
+
+According to different directional vector $\mathbf{s}$, there are several alternative measures of surface curvature. The three most frequently provided within GIS software are `profile curvature`, `plan curvature` and `tangential curvature`. Additional terms and measures include longitudinal curvature, cross-sectional curvature, maximum and minimum curvature, and mean curvature.
 
 <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 50%; margin: 0 auto;">
     <figure style="margin: 0; text-align: center;">
@@ -131,13 +164,25 @@ As with `slope`, `curvature` values depend upon the line or plane along which su
 
 ### Profile Curvature
 
-Profile curvature is the curvature of the surface in the direction of maximum slope. It is a measure of how much the slope changes along the direction of maximum slope. It is calculated as:
+**`Profile Curvature`**, determines the downhill or uphill rate of change in slope in the `gradient` direction at each grid node. Grid files of Profile Curvature produce contour maps that show isolines of constant rate of change of **steepest** slope across the surface. This operation is comparable to the `Second Directional Derivative` but is more powerful because it automatically determines the downhill direction at each point on the surface, and then determines the rate of change of slope along that direction at that point. Negative values are convex upward and indicate accelerated flow of water over the surface. Positive values are concave upward and indicate slowed flow over the surface.
 
 $$
-K_p = \frac{\partial^2 Z}{\partial s^2}
+K_{prof} = -\frac{f_{xx}f_x^2+2f_{xy}f_xf_y+f_{yy}f_y^2}{(f_x^2+f_y^2)(1+f_x^2+f_y^2)^{3/2}}
 $$
 
-Where $s$ is the distance along the direction of maximum slope.
+Where:
+
+- $f_x = \frac{\partial f}{\partial x}$, $f_y = \frac{\partial f}{\partial y}$, $f_{xx} = \frac{\partial^2 f}{\partial x^2}$, $f_{yy} = \frac{\partial^2 f}{\partial y^2}$, $f_{xy} = \frac{\partial^2 f}{\partial x \partial y}$.
+- The derectional vector $\mathbf{s}=\left(\frac{f_x}{\sqrt{f_x^2+f_y^2}}, \frac{f_y}{\sqrt{f_x^2+f_y^2}}\right)$ is the gradient vector $\nabla{Z}$.
+- The negative sign is added to make the profile curvature positive for `convex` surfaces and negative for `concave` surfaces.
+
+<div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 70%; margin: 0 auto;">
+    <figure style="margin: 0; text-align: center;">
+        <img src="./img/Edu_ProfileCurvature-1.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+        <figcaption>Profile Curvature measures the curvature of the surface in the direction of gradient. Negative curvature, shown with a gray fill, indicates a convex upward surface and accelerated water flow.
+        </figcaption>
+    </figure>
+</div>
 
 <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 70%; margin: 0 auto;">
     <figure style="margin: 0; text-align: center;">
@@ -146,31 +191,55 @@ Where $s$ is the distance along the direction of maximum slope.
     </figure>
 </div>
 
-### Plan Curvature
+### Planform Curvature
 
-Plan curvature is the curvature of the surface perpendicular to the direction of maximum slope. It is a measure of how much the slope changes in a direction perpendicular to the direction of maximum slope. It is calculated as:
+**`Plan Curvature`**, reflects the rate of change of the `Terrain Aspect angle` measured in the `horizontal plane`, and is a measure of the curvature of contours. **Negative values** indicate **divergent** water flow over the surface, and **positive** values indicate **convergent** flow.
+
 $$
-K_{pl} = \frac{\partial^2 Z}{\partial n^2}
+K_{plan} = \frac{f_{xx}f_y^2-2f_{xy}f_xf_y+f_{yy}f_x^2}{(f_x^2+f_y^2)(1+f_x^2+f_y^2)^{3/2}}
 $$
 
-Where $n$ is the distance perpendicular to the direction of maximum slope.
+Where:
+
+- $f_x = \frac{\partial f}{\partial x}$, $f_y = \frac{\partial f}{\partial y}$, $f_{xx} = \frac{\partial^2 f}{\partial x^2}$, $f_{yy} = \frac{\partial^2 f}{\partial y^2}$, $f_{xy} = \frac{\partial^2 f}{\partial x \partial y}$.
+- The derectional vector $\mathbf{s}=\left(-\frac{f_y}{\sqrt{f_x^2+f_y^2}}, \frac{f_x}{\sqrt{f_x^2+f_y^2}}\right)$ is the contour direction, i.e. the horizontal direction perpendicular to the gradient direction.
+
+<div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 70%; margin: 0 auto;">
+    <figure style="margin: 0; text-align: center;">
+        <img src="./img/Edu_PlanformCurvature-1.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+        <figcaption>Plan Curvature calculates the curvature of the surface in the horizontal plane, or the curvature of the contour. Negative curvature, shown with a gray fill, indicates areas of divergent flow.
+        </figcaption>
+    </figure>
+</div>
 
 <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 70%; margin: 0 auto;">
     <figure style="margin: 0; text-align: center;">
         <img src="./img/Edu_PlanCurv.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
-        <figcaption>Planform Curvature</figcaption>
+        <figcaption>Plan Curvature
+        </figcaption>
     </figure>
 </div>
 
 ### Tangential Curvature
 
-Tangential curvature is the curvature of the surface in the direction of the tangent to the slope. It is a measure of how much the slope changes along the direction of the tangent to the slope. It is calculated as:
+**`Tangential Curvature`**, measures `curvature` in relation to a `vertical plane` **perpendicular** to the **`gradient`** direction, or `tangential` to the `contour`. The **negative** and **positive** areas are the same as for Plan Curvature, but the curvature values are different. Tangential Curvature is related to the Plan Curvature KHby the sine of the slope:
 
 $$
-K_t = \frac{\partial^2 Z}{\partial t^2}
+K_{tang} = \frac{f_{xx}f_y^2-2f_{xy}f_xf_y+f_{yy}f_x^2}{(f_x^2+f_y^2)\sqrt{1+f_x^2+f_y^2}}
 $$
 
-Where $t$ is the distance along the direction of the tangent to the slope.
+Where:
+
+- $f_x = \frac{\partial f}{\partial x}$, $f_y = \frac{\partial f}{\partial y}$, $f_{xx} = \frac{\partial^2 f}{\partial x^2}$, $f_{yy} = \frac{\partial^2 f}{\partial y^2}$, $f_{xy} = \frac{\partial^2 f}{\partial x \partial y}$.
+- The derectional vector $\mathbf{s}$ is the deirection perpendicular to the gradient direction.
+
+<div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; width: 70%; margin: 0 auto;">
+    <figure style="margin: 0; text-align: center;">
+        <img src="./img/Edu_TangentialCurvature.png" alt="Part1_Steps_Std" style="width: 100%; height: auto; object-fit: cover;" />
+        <figcaption>Tangential Curvature measures the curvature of the surface in the vertical plane perpendicular to the gradient direction. Negative curvature, displayed with gray fill, indicates divergent flow conditions.
+        </figcaption>
+    </figure>
+</div>
 
 ## References
 
@@ -178,3 +247,6 @@ Where $t$ is the distance along the direction of the tangent to the slope.
 - [Vector Calculus: Understanding the Gradient](https://betterexplained.com/articles/vector-calculus-understanding-the-gradient/#:~:text=The%20gradient%20is%20a%20fancy,a%20function%20(intuition%20on%20why))
 - [Terrain Attributes- RichDEM](https://richdem.readthedocs.io/en/latest/terrain_attributes.html)
 - [Curvature - ArcGIS](https://pro.arcgis.com/en/pro-app/3.3/help/analysis/raster-functions/curvature-function.htm)
+- [Curvature-Profile](https://surferhelp.goldensoftware.com/gridops/profile_curvature.htm)
+- [Curvature-Plan](https://surferhelp.goldensoftware.com/gridops/plan_curvature.htm)
+- [Curvature-Tangential](https://surferhelp.goldensoftware.com/gridops/tangential_curvature.htm)
