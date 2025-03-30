@@ -25,7 +25,11 @@ $$
     Q_{i}^{WSM} = \sum_{j=1}^{n} \omega_{i,j} x_j
 $$
 
-where $\omega_{i,j}$ is the weight for the $j$th criteria in the ith decision alternative; $x_j$ is the data value of the $j$th column (attribute); and $Q_{i}^{WSM}$ is the `WSM` score for the ith decision alternative.
+where:
+
+- $\omega_{i,j}$ is the weight for the $j$th criteria in the ith decision alternative;
+- $x_j$ is the data value of the $j$th column (attribute);
+- $Q_{i}^{WSM}$ is the `WSM` score for the ith decision alternative.
 
 ### Weighted Product Method (WPM)
 
@@ -52,7 +56,7 @@ $$
 where:
 
 - $\omega_{i,j}$ represents the weight for the $j$th criteria in the ith decision alternative;
-- $x_{i,j}$ represents the data value of the $j$th column (attribute);
+- $x_{j}$ represents the data value of the $j$th column (attribute);
 - $Q_{i}^{WASPAS}$ represents the `WASPAS` score for the ith decision alternative (Thakkar 2021).
 
 ### Other methods
